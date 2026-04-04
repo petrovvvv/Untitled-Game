@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 81244993}
   - component: {fileID: 81244992}
   - component: {fileID: 81244997}
+  - component: {fileID: 81244999}
+  - component: {fileID: 81244998}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -305,6 +307,67 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   m_Size: {x: 2.27, y: 0.99}
+  m_EdgeRadius: 0
+--- !u!114 &81244998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81244991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 233078dae21744749bebe25e90484535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  eyeSprite: {fileID: -6315415111653441507, guid: 6902fdb5384944f4bba85a1279ca9600, type: 3}
+  leg1Sprite: {fileID: -2863156772636828636, guid: a15bbb03345da394c949ff9d8284f0a1, type: 3}
+  leg2Sprite: {fileID: 6585421622180039239, guid: 405fe8f082c03ca48b3834f1b94181b7, type: 3}
+--- !u!61 &81244999
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81244991}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.27, y: 0.99}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.85, y: 2.18}
   m_EdgeRadius: 0
 --- !u!1 &132940621
 GameObject:
@@ -711,6 +774,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EyeObject
   blindness: {fileID: 941684414}
+  player: {fileID: 81244991}
 --- !u!4 &860640434
 Transform:
   m_ObjectHideFlags: 0
@@ -912,7 +976,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 8651064828588750593, guid: cbfd08234b94ade42be7900b2c1fdb24, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -920,7 +984,7 @@ SpriteRenderer:
   m_Size: {x: 12, y: 6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!95 &941684417
 Animator:
