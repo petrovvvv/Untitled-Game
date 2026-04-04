@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     // Private fields
     private float speed;
     private bool canJump;
+    private bool canWalk;
     private bool canRun;
 
     // Awake is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         sprintAction = InputSystem.actions.FindAction("Sprint");
 		jumpAction = InputSystem.actions.FindAction("Jump");
         canJump = false;
+        canWalk = true;
         canRun = false;
     }
 
@@ -47,8 +49,12 @@ public class PlayerController : MonoBehaviour
         if (canRun && sprintAction.IsPressed())
         {
             x = moveDir * runSpeed;
-        } else
+        } else if (canWalk)
         {
+            x = moveDir * speed;
+        } else if (!IsGrounded())
+        {
+            // With only one leg, only move x while jumping
             x = moveDir * speed;
         }
         
@@ -71,12 +77,15 @@ public class PlayerController : MonoBehaviour
 
     public void EnableJump()
     {
+        
+        speed = walkSpeed;
+        canWalk = false;    // Initially, can only move by jumping
         canJump = true;
     }
 
      public void EnableRun()
     {
-        speed = walkSpeed;
+        canWalk = true;
         canRun = true;
     }
 }
