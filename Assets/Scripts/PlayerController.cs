@@ -8,13 +8,20 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
 	private BoxCollider2D boxCollider;
 	private InputAction moveAction;
+    private InputAction sprintAction;
 	private InputAction jumpAction;
 
     // Serialized fields
     [SerializeField] private float initSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float runSpeed;
+    [SerializeField] private float jumpSpeed;
+    [SerializeField] private LayerMask groundLayer;
 
     // Private fields
     private float speed;
+    private bool canJump;
+    private bool canRun;
 
     // Awake is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -23,13 +30,53 @@ public class PlayerController : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
 		boxCollider = GetComponent<BoxCollider2D>();
         moveAction = InputSystem.actions.FindAction("Move");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
 		jumpAction = InputSystem.actions.FindAction("Jump");
+        canJump = false;
+        canRun = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        body.linearVelocity = new Vector2(moveAction.ReadValue<Vector2>().x * speed,
-                                        body.linearVelocity.y);
+        float x = body.linearVelocity.x;
+        float y = body.linearVelocity.y;
+        float moveDir = moveAction.ReadValue<Vector2>().x;
+
+        // Horizontal movement
+        if (canRun && sprintAction.IsPressed())
+        {
+            x = moveDir * runSpeed;
+        } else
+        {
+            x = moveDir * speed;
+        }
+        
+        // Jumping
+        if (canJump && jumpAction.WasPressedThisFrame() && IsGrounded())
+        {
+            y = jumpSpeed;
+        }
+
+        // Set player movement once
+        body.linearVelocity = new Vector2(x, y);
+    }
+
+    private bool IsGrounded()
+    {
+		// BoxCast takes center, size, angle tilt, direction, length, and layer to check
+		RaycastHit2D groundRay = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+		return groundRay.collider != null;	// Hit something on the ground
+	}
+
+    public void EnableJump()
+    {
+        canJump = true;
+    }
+
+     public void EnableRun()
+    {
+        speed = walkSpeed;
+        canRun = true;
     }
 }
