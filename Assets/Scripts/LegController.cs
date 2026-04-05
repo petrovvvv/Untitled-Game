@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Leg1Controller : MonoBehaviour
+public class LegController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
 
@@ -13,8 +13,14 @@ public class Leg1Controller : MonoBehaviour
     // Update is called once per frame
     void OnTriggerEnter2D(Collider2D c)
     {
-        // Set player to be able to jump
-        player.GetComponent<PlayerController>().EnableJump();
+        PlayerController p = player.GetComponent<PlayerController>();
+        if (!p.HasLeg()) {
+            // Set player to be able to jump
+            p.EnableJump();
+        } else
+        {
+            p.EnableRun();
+        }
         // Disable leg object
         gameObject.SetActive(false);
     }

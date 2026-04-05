@@ -3,7 +3,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    
     // Private objects
     private Rigidbody2D body;
     // boxColliders[0] = initial, [1] = to be used after 2st leg gained
@@ -73,6 +72,9 @@ public class PlayerController : MonoBehaviour
 
         // Set player movement once
         body.linearVelocity = new Vector2(x, y);
+
+        // Always keep sprite upright
+        transform.eulerAngles = new Vector3(0,0,0);
     }
 
     // Returns true iff player is touching the ground
@@ -102,5 +104,10 @@ public class PlayerController : MonoBehaviour
         spriteController.addLeg2();
         canWalk = true;
         canRun = true;
+    }
+
+    public bool HasLeg()
+    {
+        return canJump;
     }
 }
