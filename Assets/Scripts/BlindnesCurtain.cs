@@ -9,12 +9,6 @@ public class BlindnesCurtain : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     // Play animation to lift l
     public void TurnOff()
     {

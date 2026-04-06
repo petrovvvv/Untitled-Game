@@ -12,13 +12,13 @@ public class PlayerController : MonoBehaviour
 	private InputAction moveAction;
     private InputAction sprintAction;
 	private InputAction jumpAction;
+    private GroundChecker groundCheck;
 
     // Serialized fields
     [SerializeField] private float initSpeed;
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float jumpSpeed;
-    [SerializeField] private LayerMask groundLayer;
 
     // Private fields
     private float speed;
@@ -39,9 +39,17 @@ public class PlayerController : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
 		jumpAction = InputSystem.actions.FindAction("Jump");
+        // Ground checker MUST be the first object underneath player in the heirarchy
         canJump = false;
         canWalk = true;
         canRun = false;
+    }
+
+    // Start called after all objects are instantiated
+    void Start()
+    {
+        // TODO: disable until jumping added?
+        groundCheck = gameObject.transform.GetChild(0).gameObject.GetComponent<GroundChecker>();
     }
 
     // Update is called once per frame
@@ -58,14 +66,14 @@ public class PlayerController : MonoBehaviour
         } else if (canWalk)
         {
             x = moveDir * speed;
-        } else if (!IsGrounded())
+        } else if (!groundCheck.IsGrounded())
         {
             // With only one leg, only move x while jumping
             x = moveDir * speed;
         }
         
         // Jumping
-        if (canJump && jumpAction.WasPressedThisFrame() && IsGrounded())
+        if (canJump && jumpAction.WasPressedThisFrame() && groundCheck.IsGrounded())
         {
             y = jumpSpeed;
         }
@@ -76,14 +84,6 @@ public class PlayerController : MonoBehaviour
         // Always keep sprite upright
         transform.eulerAngles = new Vector3(0,0,0);
     }
-
-    // Returns true iff player is touching the ground
-    private bool IsGrounded()
-    {
-		// BoxCast takes center, size, angle tilt, direction, length, and layer to check
-		RaycastHit2D groundRay = Physics2D.BoxCast(curCollider.bounds.center, curCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
-		return groundRay.collider != null;	// Hit something on the ground
-	}
 
     // Called when player gets their 1st leg
     public void EnableJump()
