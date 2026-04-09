@@ -1,45 +1,41 @@
+/*
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 
-/*
- * TODO: 
- *  - replace sprite controller with animations, remove sprite controller object
- *  - figure out how player will move with only one leg
- */
-
-[RequireComponent(typeof(Physics))]
 [RequireComponent(typeof(PlayerSpriteController))]
-
+[RequireComponent(typeof(Physics))]
 public class PlayerController : MonoBehaviour
 {
+    // Private objects
+    private Physics physics;
+    private PlayerSpriteController spriteController;
+	private InputAction moveAction;
+	private InputAction jumpAction;
+
+    // Serialized fields
+    [SerializeField] private float initSpeed;
+    [SerializeField] private float walkSpeed;
+    [SerializeField] private float jumpSpeed;
     [SerializeField] private float gravity;
     [SerializeField] private float maxFall;
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpSpeed;
 
-    private Physics physics;
-    private InputAction moveAction;
-    private InputAction jumpAction;
-    private PlayerSpriteController spriteController;
-    private static float coyoteTime = 0.1f;
-    private float dY;
-    private float dX;
-    private float airTime;
+    // Private fields
+    private float dX, dY, speed, airTime;
+    private float coyoteTime = 0.01f;
+    private bool canJump, canWalk;
 
-    private bool canJump;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    // Awake is called once before the first execution of Update after the MonoBehaviour is created
+    void Awake()
     {
-        physics = GetComponent<Physics>(); 
-        moveAction = InputSystem.actions.FindAction("Move");
-        jumpAction = InputSystem.actions.FindAction("Jump");
+        speed = initSpeed;
+        physics = GetComponent<Physics>();
         spriteController = GetComponent<PlayerSpriteController>();
-        dY = 0f;
-        airTime = 0f;
+        moveAction = InputSystem.actions.FindAction("Move");
+		jumpAction = InputSystem.actions.FindAction("Jump");
+        dY = 0;
         canJump = false;
+        canWalk = true;
     }
 
     // Update is called once per frame
@@ -52,6 +48,7 @@ public class PlayerController : MonoBehaviour
         bool grounded = physics.IsGrounded();
         if (grounded)
         {
+            Debug.Log(airTime);
             airTime = 0f;
             dY = 0f;
         } else
@@ -66,7 +63,7 @@ public class PlayerController : MonoBehaviour
             dY = Math.Max(dY, -maxFall);
         }
 
-        if (canJump && jumpAction.WasPressedThisFrame() && (grounded || airTime <= coyoteTime))
+        if (jumpAction.WasPressedThisFrame() && (grounded || airTime <= coyoteTime))
         {
             dY = jumpSpeed;
         }
@@ -74,15 +71,20 @@ public class PlayerController : MonoBehaviour
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime);
     }
 
-    public void EnableRun()
-    {
-        spriteController.addLeg2();
-    }
-
+    // Called when player gets their 1st leg
     public void EnableJump()
     {
         spriteController.addLeg1();
+        speed = walkSpeed;
+        canWalk = false;    // Initially, can only move by jumping
         canJump = true;
+    }
+
+    // Called when player gets their 2nd leg
+    public void EnableRun()
+    {
+        spriteController.addLeg2();
+        canWalk = true;
     }
 
     public bool HasLeg()
@@ -90,3 +92,4 @@ public class PlayerController : MonoBehaviour
         return canJump;
     }
 }
+*/
