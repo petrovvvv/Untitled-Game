@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.U2D;
 
 /*
  * TODO: 
@@ -10,7 +9,6 @@ using UnityEngine.U2D;
  */
 
 [RequireComponent(typeof(Physics))]
-[RequireComponent(typeof(PlayerSpriteController))]
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,9 +18,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpSpeed;
 
     private Physics physics;
+    private SpriteRenderer sprite;
+    private Animator anim;
     private InputAction moveAction;
     private InputAction jumpAction;
-    private PlayerSpriteController spriteController;
+    private GameObject curChild;    // Current active player object
+    private BoxCollider2D curCollider;     // curChild's collider
     private static float coyoteTime = 0.1f;
     private float dY;
     private float dX;
@@ -33,10 +34,18 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        physics = GetComponent<Physics>(); 
+        physics = GetComponent<Physics>();
+        anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
-        spriteController = GetComponent<PlayerSpriteController>();
+        curChild = transform.GetChild(0).gameObject;
+        curCollider = curChild.GetComponent<BoxCollider2D>();
+
+        // Make sure the correct player sprite is set up
+        curChild.SetActive(true);
+        transform.GetChild(1).gameObject.SetActive(false);
+
         dY = 0f;
         airTime = 0f;
         canJump = false;
@@ -49,7 +58,7 @@ public class PlayerController : MonoBehaviour
         dX = moveAction.ReadValue<Vector2>().x * speed;
 
         // Vertical movement  
-        bool grounded = physics.IsGrounded();
+        bool grounded = physics.IsGrounded(curCollider);
         if (grounded)
         {
             airTime = 0f;
@@ -57,7 +66,7 @@ public class PlayerController : MonoBehaviour
         } else
         {
             airTime += Time.deltaTime;
-            if (physics.HitHead() || (jumpAction.WasReleasedThisFrame() && dY > 0f))
+            if (physics.HitHead(curCollider) || (jumpAction.WasReleasedThisFrame() && dY > 0f))
             {
                 dY = 0f;
             }
@@ -71,22 +80,15 @@ public class PlayerController : MonoBehaviour
             dY = jumpSpeed;
         }
 
-        physics.Move(dX * Time.deltaTime, dY * Time.deltaTime);
+        physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
+        curChild.GetComponent<Player>().SetAnimation(dX);
     }
 
-    public void EnableRun()
+    public void AddLeg1()
     {
-        spriteController.addLeg2();
-    }
-
-    public void EnableJump()
-    {
-        spriteController.addLeg1();
-        canJump = true;
-    }
-
-    public bool HasLeg()
-    {
-        return canJump;
+        transform.GetChild(0).gameObject.SetActive(false);
+        curChild = transform.GetChild(1).gameObject;
+        curChild.SetActive(true);
+        curCollider = curChild.GetComponent<BoxCollider2D>();
     }
 }
