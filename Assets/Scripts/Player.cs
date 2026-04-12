@@ -1,11 +1,15 @@
+/*
+ *  For simplicity, currently both player types have the same class, TODO: probably make a class heirarchy
+ */
+
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(SpriteRenderer))]
-public class Player : MonoBehaviour
+public abstract class Player : MonoBehaviour
 {
-    private Animator anim;
-    private SpriteRenderer sprite;
+    protected Animator anim;
+    protected SpriteRenderer sprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,7 +17,7 @@ public class Player : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public void SetAnimation(float dx)
+    public virtual void SetAnimation(float dx, bool grounded, bool jump)
     {
         if (dx < 0f)
         {
@@ -25,10 +29,7 @@ public class Player : MonoBehaviour
         anim.SetBool("Walk", dx != 0);
     }
 
-    public void AddEyes()
-    {
-        anim.SetTrigger("Eyes");
-        transform.Find("BlindCurtain").gameObject.GetComponent<Animator>().SetTrigger("Eyes");
-        transform.GetChild(0).GetComponent<Animator>().SetTrigger("Eyes");
-    }
+    public virtual void AddEyes(){}
+    public virtual void AddLeg(){}
+    public virtual void AddArm(){}
 }

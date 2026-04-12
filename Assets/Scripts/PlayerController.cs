@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 
 /*
  * TODO: 
- *  - replace sprite controller with animations, remove sprite controller object
  *  - figure out how player will move with only one leg
  */
 
@@ -14,7 +13,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float gravity;
     [SerializeField] private float maxFall;
-    [SerializeField] private float speed;
+    [SerializeField] private float startSpeed;
+    [SerializeField] private float normalSpeed;
     [SerializeField] private float jumpSpeed;
 
     private Physics physics;
@@ -25,11 +25,11 @@ public class PlayerController : MonoBehaviour
     private GameObject curChild;    // Current active player object
     private BoxCollider2D curCollider;     // curChild's collider
     private static float coyoteTime = 0.1f;
-    private float dY;
-    private float dX;
     private float airTime;
-
+    private float speed;
+    private float dX, dY;
     private bool canJump;
+    private bool oneLeg;    // True if ONLY one leg
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,19 +46,30 @@ public class PlayerController : MonoBehaviour
         curChild.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(false);
 
-        dY = 0f;
         airTime = 0f;
+        speed = startSpeed;
+        dY = 0;
         canJump = false;
+        oneLeg = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool grounded = physics.IsGrounded(curCollider);
+        bool jump = false;  // Whether a jump started this iteration
+
         // Horizontal movement
-        dX = moveAction.ReadValue<Vector2>().x * speed;
+        if (oneLeg && !grounded)
+        {
+            // For one leg, only move normalSpeed when jumping
+            dX = moveAction.ReadValue<Vector2>().x * normalSpeed;
+        } else
+        {
+            dX = moveAction.ReadValue<Vector2>().x * speed;
+        }
 
         // Vertical movement  
-        bool grounded = physics.IsGrounded(curCollider);
         if (grounded)
         {
             airTime = 0f;
@@ -66,29 +77,40 @@ public class PlayerController : MonoBehaviour
         } else
         {
             airTime += Time.deltaTime;
-            if (physics.HitHead(curCollider) || (jumpAction.WasReleasedThisFrame() && dY > 0f))
+            if (dY > 0 && (physics.HitHead(curCollider) || jumpAction.WasReleasedThisFrame()))
             {
                 dY = 0f;
             }
-             dY -= gravity * Time.deltaTime;
+            dY -= gravity * Time.deltaTime;
             // Clamp fall speed
             dY = Math.Max(dY, -maxFall);
         }
 
-        if (canJump && jumpAction.WasPressedThisFrame() && (grounded || airTime <= coyoteTime))
+        if ((grounded || airTime <= coyoteTime) &&canJump && jumpAction.WasPressedThisFrame())
         {
             dY = jumpSpeed;
+            jump = true;
         }
 
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
-        curChild.GetComponent<Player>().SetAnimation(dX);
+        curChild.GetComponent<Player>().SetAnimation(dX, grounded, jump);
     }
 
     public void AddLeg1()
     {
+        // Change to full-sized sprite, since player is now upright
         transform.GetChild(0).gameObject.SetActive(false);
         curChild = transform.GetChild(1).gameObject;
         curChild.SetActive(true);
         curCollider = curChild.GetComponent<BoxCollider2D>();
+
+        canJump = true;
+        oneLeg = true;
+    }
+
+    public void AddLeg2()
+    {
+        oneLeg = false;
+        speed = normalSpeed;
     }
 }
