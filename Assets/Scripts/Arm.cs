@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Leg : MonoBehaviour
+public class Arm : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D c)
     {
-        c.gameObject.GetComponent<Player>().AddLeg();
+        c.gameObject.GetComponent<Player>().AddArm();
         gameObject.SetActive(false);
     }
 }

@@ -113,4 +113,7 @@ public class PlayerController : MonoBehaviour
         oneLeg = false;
         speed = normalSpeed;
     }
+
+    public void AddArm1() {}
+    public void AddArm2() {}
 }

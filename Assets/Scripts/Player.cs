@@ -10,21 +10,28 @@ public abstract class Player : MonoBehaviour
 {
     protected Animator anim;
     protected SpriteRenderer sprite;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    protected void Startup()
     {
         anim = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        Startup();
     }
 
     public virtual void SetAnimation(float dx, bool grounded, bool jump)
     {
         if (dx < 0f)
         {
-            sprite.flipX = true;
+            // Object faces left
+            transform.localScale = new Vector3(-1f, 1f, 1f);
         } else if (dx > 0f)
         {
-            sprite.flipX = false;
+            // Object faces right
+            transform.localScale = new Vector3(1f, 1f, 1f);
         }
         anim.SetBool("Walk", dx != 0);
     }
