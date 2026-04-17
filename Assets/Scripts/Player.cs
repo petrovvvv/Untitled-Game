@@ -5,16 +5,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 public abstract class Player : MonoBehaviour
 {
     protected Animator anim;
-    protected SpriteRenderer sprite;
     
     protected void Startup()
     {
         anim = GetComponent<Animator>();
-        sprite = GetComponent<SpriteRenderer>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

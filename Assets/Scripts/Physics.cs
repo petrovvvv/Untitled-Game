@@ -2,6 +2,9 @@
   *  Custom physics engine. Replacement for Unity's Rigitbody2D.
   */
 
+// TODO: make single diagonal cast
+// TODO: maybe make specific clibmable wall layer
+
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,18 +17,22 @@ public class Physics : MonoBehaviour
 
     public bool IsGrounded(BoxCollider2D c)
     {
-        RaycastHit2D groundHit = Physics2D.BoxCast(c.bounds.center,
-                                                     c.bounds.size, 0f,
-                                                     Vector2.down, skinWidth, groundLayer);
-        return groundHit.collider != null;
+        RaycastHit2D groundHit = Cast(c, Vector2.down, groundLayer, skinWidth);
+        return groundHit;
     }
 
     public bool HitHead(BoxCollider2D c)
     {
-        Bounds bounds = c.bounds;
-        bounds.Expand(skinWidth * -2f);
-        RaycastHit2D topHit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.up, skinWidth, ~selfLayer);
-        return topHit.collider != null;
+        RaycastHit2D topHit = Cast(c, Vector2.up, ~selfLayer, skinWidth);
+        return topHit;
+    }
+
+    public bool OnWall(BoxCollider2D c)
+    {
+        // Cast ray in direction object is facing
+        Vector2 dir = transform.localScale;
+        RaycastHit2D sideHit = Cast(c, dir, ~selfLayer, skinWidth);
+        return sideHit;
     }
 
     public void  Move(float x, float y, BoxCollider2D c)
@@ -37,17 +44,24 @@ public class Physics : MonoBehaviour
         transform.Translate(new Vector2(x, y));
     }
 
-    // TODO: make single diagonal cast
     private float CastLen(Vector2 dir, float len, BoxCollider2D c) {
         float dirSign = Math.Sign(len);
+        RaycastHit2D hit = Cast(c, dir * dirSign, ~selfLayer, Math.Abs(len) + skinWidth);
+        if (!hit)
+        {
+            return len;
+        }
+        return (hit.distance - skinWidth) * dirSign;
+    }
+
+    private RaycastHit2D Cast(BoxCollider2D c, Vector2 dir, LayerMask mask, float len)
+    {
         Bounds bounds = c.bounds;
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         ContactFilter2D filter = new ContactFilter2D();
-
         bounds.Expand(skinWidth * -2f);
-        filter.SetLayerMask(~selfLayer);
-        Physics2D.BoxCast(bounds.center, bounds.size,  0f,
-                                        dir * dirSign, filter, hits, Math.Abs(len) + skinWidth);
+        filter.SetLayerMask(mask);
+        Physics2D.BoxCast(bounds.center, bounds.size,  0f, dir, filter, hits, len);
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider.isTrigger)
@@ -55,9 +69,9 @@ public class Physics : MonoBehaviour
                 continue;
             }
             // Return how far we can move without hitting something
-            return (hit.distance - skinWidth) * dirSign;
+            return hit;
         }
-        return len;
+        return default(RaycastHit2D);
     }
 }
 

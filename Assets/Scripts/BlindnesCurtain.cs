@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class BlindnesCurtain : MonoBehaviour
 {
     private Animator anim;
