@@ -21,15 +21,6 @@ public abstract class Player : MonoBehaviour
 
     public virtual void SetAnimation(float dx, bool grounded, bool jump)
     {
-        if (dx < 0f)
-        {
-            // Object faces left
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        } else if (dx > 0f)
-        {
-            // Object faces right
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
         anim.SetBool("Walk", dx != 0);
     }
 

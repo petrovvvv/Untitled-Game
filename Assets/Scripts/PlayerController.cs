@@ -1,11 +1,14 @@
 using System;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
  * TODO: 
- *  - figure out how player will move with only one leg
+ *  - Fix wall climbing speed
+ *  - Add health system
+ *  - Add attacks
  */
 
 [RequireComponent(typeof(Physics))]
@@ -19,7 +22,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float startSpeed;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float jumpSpeed;
-    [SerializeField] private float climbSpeed;
     [SerializeField] private UIController ui;   // TODO: change this later
 
     private Physics physics;
@@ -29,12 +31,13 @@ public class PlayerController : MonoBehaviour
     private BoxCollider2D curCollider;     // curChild's collider
 
     private static float coyoteTime = 0.1f;
-    private float airTime;
-    private float speed;
-    private float dX, dY;
-    private bool canJump;
-    private bool doubleJumped;
-    private bool oneLeg;    // True if ONLY one leg
+    private static float wallJumpAirTime = 0.2f;
+    private float airTime;      // Time since leaving ground
+    private float wallJumpTime; // Time since leaving wall
+    private float speed;        // Current walk speed
+    private float dX, dY;       // Amt to move this loop
+    private bool doubleJumped;  // True iff has made their 2nd jump mid-air
+    private bool oneLeg;
     private bool twoLegs;
     private bool twoArms;
 
@@ -52,9 +55,9 @@ public class PlayerController : MonoBehaviour
         transform.GetChild(1).gameObject.SetActive(false);
 
         airTime = 0f;
+        wallJumpTime = wallJumpAirTime + 1f;
         speed = startSpeed;
         dY = 0;
-        canJump = false;
         doubleJumped = false;
         oneLeg = false;
         twoLegs = false;
@@ -64,13 +67,19 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector2 movement = moveAction.ReadValue<Vector2>();
         bool grounded = physics.IsGrounded(curCollider);
-        bool jump = false;  // Whether a jump started this iteration
 
         // Horizontal movement
-        dX = moveAction.ReadValue<Vector2>().x * speed;
+        if (wallJumpTime >= wallJumpAirTime) {
+            dX = movement.x * speed;
+        }
+        wallJumpTime += Time.deltaTime;
 
         // Vertical movement  
+        bool climb = twoArms && !grounded && physics.OnWall(curCollider);
+        bool jump = false;  // Whether a jump started this iteration
+
         if (grounded)
         {
             airTime = 0f;
@@ -79,33 +88,70 @@ public class PlayerController : MonoBehaviour
         } else
         {
             airTime += Time.deltaTime;
-            if (dY > 0 && (physics.HitHead(curCollider) || jumpAction.WasReleasedThisFrame()))
+            if (dY > 0f && (physics.HitHead(curCollider) || jumpAction.WasReleasedThisFrame()))
             {
+                // Stop jump early
                 dY = 0f;
+            } else if (climb)
+            {
+                if (dY > 0f)
+                {
+                    // Normal gravity when moving upwards to prevent floating
+                    dY -= gravity * Time.deltaTime;
+                }
+                else
+                {
+                    // Fall down slower when on wall
+                    dY -= gravity * 0.2f * Time.deltaTime;
+                }
+            } else {
+                // Normal fall
+                dY -= gravity * Time.deltaTime;
+                dY = Math.Max(dY, -maxFall);
             }
-            dY -= gravity * Time.deltaTime;
-            // Clamp fall speed
-            dY = Math.Max(dY, -maxFall);
         }
 
-        if (canJump && jumpAction.WasPressedThisFrame())
+        if (oneLeg && jumpAction.WasPressedThisFrame())
         {
-            jump = Jump(grounded);
+            jump = Jump(grounded, climb);
         }
 
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
+        SetDir(dX);
         curChild.GetComponent<Player>().SetAnimation(dX, grounded, jump);
     }
 
-    private bool Jump(bool grounded)
+    private void SetDir(float dx)
+    {
+        if (dx < 0f)
+        {
+            // Object faces left
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        } else if (dx > 0f)
+        {
+            // Object faces right
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+    }
+
+    private bool Jump(bool grounded, bool climb)
     {
         if (!grounded || airTime > coyoteTime)
         {
             if (!twoLegs || doubleJumped)
             {
+                // Can't jump
                 return false;
-            } 
-            doubleJumped = true;
+            } else if (!climb) {
+                // This is a double jump
+                doubleJumped = true;
+            }
+        }
+        if (climb)
+        {
+            // Wall jump
+            dX = -transform.localScale.x * speed;   // TODO; adjust speed
+            wallJumpTime = 0f;
         }
         dY = jumpSpeed;
         return true;
@@ -119,7 +165,6 @@ public class PlayerController : MonoBehaviour
         curChild.SetActive(true);
         curCollider = curChild.GetComponent<BoxCollider2D>();
 
-        canJump = true;
         oneLeg = true;
 
        // ui.DisableText();
@@ -128,7 +173,6 @@ public class PlayerController : MonoBehaviour
 
     public void AddLeg2()
     {
-        oneLeg = false;
         twoLegs = true;
         speed = normalSpeed;
 

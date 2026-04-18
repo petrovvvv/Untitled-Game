@@ -30,7 +30,7 @@ public class Physics : MonoBehaviour
     public bool OnWall(BoxCollider2D c)
     {
         // Cast ray in direction object is facing
-        Vector2 dir = transform.localScale;
+        Vector2 dir = new Vector2(transform.localScale.x, 0f);
         RaycastHit2D sideHit = Cast(c, dir, ~selfLayer, skinWidth);
         return sideHit;
     }
@@ -46,7 +46,7 @@ public class Physics : MonoBehaviour
 
     private float CastLen(Vector2 dir, float len, BoxCollider2D c) {
         float dirSign = Math.Sign(len);
-        RaycastHit2D hit = Cast(c, dir * dirSign, ~selfLayer, Math.Abs(len) + skinWidth);
+        RaycastHit2D hit = Cast(c, dir * dirSign, ~selfLayer, Math.Abs(len));
         if (!hit)
         {
             return len;
@@ -61,7 +61,7 @@ public class Physics : MonoBehaviour
         ContactFilter2D filter = new ContactFilter2D();
         bounds.Expand(skinWidth * -2f);
         filter.SetLayerMask(mask);
-        Physics2D.BoxCast(bounds.center, bounds.size,  0f, dir, filter, hits, len);
+        Physics2D.BoxCast(bounds.center, bounds.size,  0f, dir, filter, hits, len + skinWidth);
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider.isTrigger)
