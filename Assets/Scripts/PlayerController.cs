@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 /*
  * TODO: 
- *  - Fix wall climbing speed
  *  - Add health system
  *  - Add attacks
  */
@@ -37,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private float speed;        // Current walk speed
     private float dX, dY;       // Amt to move this loop
     private bool doubleJumped;  // True iff has made their 2nd jump mid-air
+    private bool wasInAir;      // Whether the previous frame was spent in mid-air
     private bool oneLeg;
     private bool twoLegs;
     private bool twoArms;
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
         speed = startSpeed;
         dY = 0;
         doubleJumped = false;
+        wasInAir = true;
         oneLeg = false;
         twoLegs = false;
         twoArms = false;
@@ -98,11 +99,14 @@ public class PlayerController : MonoBehaviour
                 {
                     // Normal gravity when moving upwards to prevent floating
                     dY -= gravity * Time.deltaTime;
-                }
-                else
+                } else if (wasInAir)
+                {
+                    // Just hit wall, stop fall
+                    dY = 0f;
+                } else
                 {
                     // Fall down slower when on wall
-                    dY -= gravity * 0.2f * Time.deltaTime;
+                    dY -= gravity * 0.4f * Time.deltaTime;
                 }
             } else {
                 // Normal fall
@@ -119,6 +123,7 @@ public class PlayerController : MonoBehaviour
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
         SetDir(dX);
         curChild.GetComponent<Player>().SetAnimation(dX, grounded, jump);
+        wasInAir = !grounded && !climb;
     }
 
     private void SetDir(float dx)
