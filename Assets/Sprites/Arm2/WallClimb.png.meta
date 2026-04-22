@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: 36b904fa07c2e494591236d1e1410786
+guid: bd1582fca8f405642bbae43d0a374879
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2093218751314616625
-    second: Ground small_0
+      213: -1455960116170421374
+    second: WallClimb (2)_0
   - first:
-      213: 4763974520072343709
-    second: Ground small_1
+      213: 4949136555985356894
+    second: WallClimb (2)_1
   - first:
-      213: 6151158985114541075
-    second: Ground small_2
+      213: -7791718478779619991
+    second: WallClimb (2)_2
+  - first:
+      213: -2381070008563123608
+    second: WallClimb (2)_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,67 +122,133 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground small_0
+      name: WallClimb_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54745684188b469428e076ee4d024816
+      internalID: -1696440882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallClimb_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40106c50273444043b668a948ffadf73
+      internalID: -559308959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallClimb_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb950fc824e83c24f9ef247f0a53a4f1
+      internalID: -307227147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallClimb_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d1f6c43397e2b048b6ea0ba3672377e
+      internalID: 517945214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WallClimb_4
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fce94b2d2a463f2e0800000000000000
-      internalID: -2093218751314616625
+      spriteID: 0224106a51d04254b92b4322df8ff780
+      internalID: 1236958687
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground small_1
+      name: WallClimb_5
       rect:
         serializedVersion: 2
-        x: 9
+        x: 16
         y: 0
-        width: 8
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: d909cebd5990d1240800000000000000
-      internalID: 4763974520072343709
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground small_2
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 31c54b8b18e4d5550800000000000000
-      internalID: 6151158985114541075
+      spriteID: e4c65431265ce734eb16b9d4766272a6
+      internalID: 1567598229
       vertices: []
       indices: 
       edges: []
@@ -188,7 +257,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6a8396e934b59da4081d52e92ba4ad9a
+    spriteID: e445653fcd196be40b328210e3ef0973
     internalID: 0
     vertices: []
     indices: 
@@ -196,11 +265,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":3.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Ground small_0: -2093218751314616625
-      Ground small_1: 4763974520072343709
-      Ground small_2: 6151158985114541075
+      WallClimb_0: -1696440882
+      WallClimb_1: -559308959
+      WallClimb_2: -307227147
+      WallClimb_3: 517945214
+      WallClimb_4: 1236958687
+      WallClimb_5: 1567598229
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

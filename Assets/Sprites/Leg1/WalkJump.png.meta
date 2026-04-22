@@ -200,8 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b21bee8de2f4c41499f7b59e8cd9799a
-      internalID: 731831628
+      spriteID: 9cc215572efd5724b8e445cb3060dfe8
+      internalID: -101697821
       vertices: []
       indices: 
       edges: []
@@ -222,8 +222,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee184f368b061c94893309099a327baf
-      internalID: 289454943
+      spriteID: bf1fefbdf8f808648a4602925b5ff1b5
+      internalID: 1530983629
       vertices: []
       indices: 
       edges: []
@@ -244,8 +244,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97ba886d0dfc12d4284d553894524d95
-      internalID: -116033634
+      spriteID: 6bd982e64c302ae49b0847e75f45397b
+      internalID: 800693498
       vertices: []
       indices: 
       edges: []
@@ -254,7 +254,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 49f709c803c8aa44fa8a7172189f927d
+    spriteID: b71cc2db744b71e45bfb282b7e126a03
     internalID: 0
     vertices: []
     indices: 
@@ -269,9 +269,9 @@ TextureImporter:
       WalkJump_0: -8722487427484190883
       WalkJump_1: 3337145062980916287
       WalkJump_2: -8996446683426078827
-      WalkJump_3: 731831628
-      WalkJump_4: 289454943
-      WalkJump_5: -116033634
+      WalkJump_3: -101697821
+      WalkJump_4: 1530983629
+      WalkJump_5: 800693498
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -119,12 +119,12 @@ TextureImporter:
       name: Arm1_0
       rect:
         serializedVersion: 2
-        x: 2
+        x: 1
         y: 10
-        width: 7
-        height: 9
-      alignment: 9
-      pivot: {x: 0.42857146, y: 0.44444445}
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: Arm1_1
       rect:
         serializedVersion: 2
-        x: 2
+        x: 1
         y: 0
-        width: 7
-        height: 9
-      alignment: 9
-      pivot: {x: 0.42857146, y: 0.44444445}
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: a3046bffc6660f24c90c39c800d0e700
+    spriteID: 00280d6af81fee44487edafdb67affc9
     internalID: 0
     vertices: []
     indices: 

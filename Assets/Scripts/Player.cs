@@ -19,7 +19,7 @@ public abstract class Player : MonoBehaviour
         Startup();
     }
 
-    public virtual void SetAnimation(float dx, bool grounded, bool jump)
+    public virtual void SetAnimation(float dx, bool grounded, bool jump, bool wall)
     {
         anim.SetBool("Walk", dx != 0);
     }

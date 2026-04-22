@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
         SetDir(dX);
-        curChild.GetComponent<Player>().SetAnimation(dX, grounded, jump);
+        curChild.GetComponent<Player>().SetAnimation(dX, grounded, jump, climb);
         wasInAir = !grounded && !climb;
     }
 

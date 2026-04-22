@@ -29,11 +29,12 @@ public class FullPlayer : Player
     }
   }
 
-  public override void SetAnimation(float dx, bool grounded, bool jump)
+  public override void SetAnimation(float dx, bool grounded, bool jump, bool wall)
   {
-    base.SetAnimation(dx, grounded, jump);
+    base.SetAnimation(dx, grounded, jump, wall);
     anim.SetBool("Grounded", grounded);
     anim.SetBool("Left", transform.localScale.x < 0f);
+    anim.SetBool("Wall", wall);
     if (jump)
     {
       anim.SetTrigger("Jump");

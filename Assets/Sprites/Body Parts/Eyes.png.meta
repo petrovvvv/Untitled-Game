@@ -119,12 +119,12 @@ TextureImporter:
       name: Eyes_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 9
-        width: 10
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
+        x: 1
+        y: 10
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: Eyes_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 10
-        height: 9
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5555556}
+        x: 1
+        y: 1
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -163,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 7b819eb94f5ed844fb2e828453a5ef8b
+    spriteID: 2ae1a135a161b914998ca4b99a3852aa
     internalID: 0
     vertices: []
     indices: 
@@ -171,9 +171,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":2.0},"gridSpriteSize":{"x":10.0,"y":9.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
       Eyes_0: 5141760670510271424
       Eyes_1: -4077014396740012951

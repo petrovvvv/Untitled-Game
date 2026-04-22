@@ -11,9 +11,6 @@ TextureImporter:
   - first:
       213: -485111123018289494
     second: Crawl_2
-  - first:
-      213: 8488165154635895383
-    second: Crawl_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -187,33 +184,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Crawl_3
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 0
-        width: 20
-        height: 12
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 752dbe46c350cc570800000000000000
-      internalID: 8488165154635895383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 4e2e17e3cc8ba9d4f80cf043e412e1c3
+    spriteID: 0fae09c4c101aa447aad8fcd39b53c44
     internalID: 0
     vertices: []
     indices: 
@@ -228,7 +203,6 @@ TextureImporter:
       Crawl_0: 4612047012486592167
       Crawl_1: 4759532313474675925
       Crawl_2: -485111123018289494
-      Crawl_3: 8488165154635895383
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
