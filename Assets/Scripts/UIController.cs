@@ -1,29 +1,42 @@
 // Hacky script for getting some basic tutorial text in. TODO: change this later
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIController : MonoBehaviour
 {
-    private GameObject curText;
+    [SerializeField] private GameObject pauseMenu;
+
+    private InputAction pauseAction;
 
     void Start()
     {
-        curText = transform.Find("Start Text").gameObject;
+        pauseAction = InputSystem.actions.FindAction("Pause");
+        pauseMenu.SetActive(false);
     }
 
-    public void DisableText()
+    public void Update()
     {
-        curText.SetActive(false);
-    }
-    public void EnableJumpText()
-    {
-        curText = transform.Find("Jump Text").gameObject;
-        curText.SetActive(true);
+        if (pauseAction.WasPressedThisFrame())
+        {
+            Pause();
+        }
     }
 
-    public void EnableDoubleJumpText()
+    public void Pause()
     {
-        curText = transform.Find("Double-Jump Text").gameObject;
-        curText.SetActive(true);
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Unpause()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
