@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: WaterTop2
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
   m_AnimatedSprites:
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 679661842, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 986008248, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: -1734315585, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
+  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
+  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}

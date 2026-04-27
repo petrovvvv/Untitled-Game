@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 2fa611ca3d2dfc947857d084d2d1d3d5
+guid: 541f020505b8cfa45af4b8652b581a4e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7638195118947808542
-    second: Leg2_0
-  - first:
-      213: 5273412543940303689
-    second: Leg2_1
+      213: -8104327032190380960
+    second: Ground single_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,45 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Leg2_0
+      name: Ground single_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 9
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2ea4ef9120eaff590800000000000000
-      internalID: -7638195118947808542
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Leg2_1
-      rect:
-        serializedVersion: 2
-        x: 2
+        x: 0
         y: 0
         width: 8
         height: 8
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 94b96abd4ccee2940800000000000000
-      internalID: 5273412543940303689
+      spriteID: 06452b6b085a78f80800000000000000
+      internalID: -8104327032190380960
       vertices: []
       indices: 
       edges: []
@@ -163,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bbdcf7253ba57294f9b8a3ae42bec46d
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Leg2_0: -7638195118947808542
-      Leg2_1: 5273412543940303689
+      Ground single_0: -8104327032190380960
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

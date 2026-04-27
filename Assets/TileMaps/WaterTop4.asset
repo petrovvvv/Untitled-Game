@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: WaterTop4
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
   m_AnimatedSprites:
-  - {fileID: -497215724, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: -514540154, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 1114233745, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 1122963988, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
@@ -22,6 +20,8 @@ MonoBehaviour:
   - {fileID: 1457707547, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: 736564279, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   - {fileID: -30712661, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
+  - {fileID: -497215724, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
+  - {fileID: -514540154, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
   m_MinSpeed: 10
   m_MaxSpeed: 10
   m_AnimationStartTime: 0
