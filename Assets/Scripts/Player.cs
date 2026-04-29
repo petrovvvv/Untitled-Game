@@ -1,6 +1,4 @@
 using System;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +6,7 @@ using UnityEngine.InputSystem;
  * TODO: 
  *  - Add health system
  *  - Add attacks
+ *  - Decide what to do with first arm
  */
 
 [RequireComponent(typeof(Physics))]
@@ -18,9 +17,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float gravity;
     [SerializeField] private float maxFall;
-    [SerializeField] private float startSpeed;
-    [SerializeField] private float normalSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private float speed;        // Current walk speed
     [SerializeField] private UIController ui;   // TODO: change this later
 
     private Physics physics;
@@ -30,12 +28,15 @@ public class Player : MonoBehaviour
     private BoxCollider2D curCollider;     // curChild's collider
     private Animator anim;
 
+    private float startSpeed = 2f;
+    private float normalSpeed = 5f;
     private static float coyoteTime = 0.1f;
     private static float wallJumpAirTime = 0.225f;
+
     private float airTime;      // Time since leaving ground
     private float wallJumpTime; // Time since leaving wall
-    private float speed;        // Current walk speed
     private float dX, dY;       // Amt to move this loop
+    private bool canMove;       // If false, disables player movement
     private bool doubleJumped;  // True iff has made their 2nd jump mid-air
     private bool wasInAir;      // Whether the previous frame was spent in mid-air
     private bool oneLeg;
@@ -61,6 +62,7 @@ public class Player : MonoBehaviour
         wallJumpTime = wallJumpAirTime + 1f;
         speed = startSpeed;
         dY = 0;
+        canMove = true;
         doubleJumped = false;
         wasInAir = true;
         oneLeg = false;
@@ -71,6 +73,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+        {
+            return; // TODO: maybe still want gravity??
+        }
         Vector2 movement = moveAction.ReadValue<Vector2>();
         bool grounded = physics.IsGrounded(curCollider);
 
@@ -174,6 +180,16 @@ public class Player : MonoBehaviour
         {
             anim.SetTrigger("Jump");
         }
+    }
+
+    public void DisableMvmt()
+    {
+        canMove = false;
+    }
+
+    public void EnableMvmt()
+    {
+        canMove = true;
     }
 
     public void AddEyes()

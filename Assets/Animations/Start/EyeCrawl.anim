@@ -24,7 +24,7 @@ AnimationClip:
       value: {fileID: 4759532313474675925, guid: 55787a07d7f841f4d8898da8ad7e74f1, type: 3}
     - time: 0.1
       value: {fileID: -485111123018289494, guid: 55787a07d7f841f4d8898da8ad7e74f1, type: 3}
-    - time: 0.73333335
+    - time: 0.75
       value: {fileID: 4759532313474675925, guid: 55787a07d7f841f4d8898da8ad7e74f1, type: 3}
     - time: 0.85
       value: {fileID: 4612047012486592167, guid: 55787a07d7f841f4d8898da8ad7e74f1, type: 3}
@@ -81,4 +81,25 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0
+    functionName: DisableMvmt
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.75
+    functionName: EnableMvmt
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1666666
+    functionName: DisableMvmt
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
