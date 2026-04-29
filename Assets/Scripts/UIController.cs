@@ -11,7 +11,7 @@ public class UIController : MonoBehaviour
 
     void Start()
     {
-        pauseAction = InputSystem.actions.FindAction("Pause");
+        pauseAction = InputSystem.actions.FindAction("Cancel");
         pauseMenu.SetActive(false);
     }
 
