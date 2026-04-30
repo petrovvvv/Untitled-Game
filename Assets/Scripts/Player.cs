@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
 
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
         SetDir(dX);
-        SetAnimation(grounded, jump, climb);
+        SetAnimation(movement.x, grounded, jump, climb);
         wasInAir = !grounded && !climb;
     }
 
@@ -170,7 +170,7 @@ public class Player : MonoBehaviour
         return true;
     }
 
-    private void SetAnimation(bool grounded, bool jump, bool climb)
+    private void SetAnimation(float dX, bool grounded, bool jump, bool climb)
     {
         anim.SetBool("Walk", dX != 0);
         anim.SetBool("Grounded", grounded);
