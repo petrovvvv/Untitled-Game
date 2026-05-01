@@ -1,19 +1,22 @@
 fileFormatVersion: 2
-guid: 0f41cf8ebfc4a2a4fa03183047c0b028
+guid: ee03f072359542040974e31107750c73
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4432793351920879750
-    second: Hearts_0
+      213: -2443198628030305771
+    second: Hearts 1_0
   - first:
-      213: 5642012044021194823
-    second: Hearts_1
+      213: -3519655967668433541
+    second: Hearts 1_1
   - first:
-      213: 8124259339964715380
-    second: Hearts_2
+      213: 3250383728075958613
+    second: Hearts 1_2
   - first:
-      213: 7685371531485235544
-    second: Hearts_3
+      213: -4312832082803649899
+    second: Hearts 1_3
+  - first:
+      213: 7106379416318217782
+    second: Hearts 1_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,19 +129,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 16
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        y: 18
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68805ff4112748d30800000000000000
-      internalID: 4432793351920879750
+      spriteID: 4d291beb09cd5b54ea729df3df02bd5d
+      internalID: 455032095
       vertices: []
       indices: 
       edges: []
@@ -147,20 +150,20 @@ TextureImporter:
       name: Hearts_1
       rect:
         serializedVersion: 2
-        x: 8
-        y: 16
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 9
+        y: 18
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 740eb56bf047c4e40800000000000000
-      internalID: 5642012044021194823
+      spriteID: 153293fef9892de459da032352362863
+      internalID: 2119734502
       vertices: []
       indices: 
       edges: []
@@ -169,20 +172,20 @@ TextureImporter:
       name: Hearts_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 8
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 18
+        y: 18
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 4711fb553da2fb070800000000000000
-      internalID: 8124259339964715380
+      spriteID: c44948ad4eb9572449ffa71e5fe06b4d
+      internalID: 345232937
       vertices: []
       indices: 
       edges: []
@@ -191,20 +194,20 @@ TextureImporter:
       name: Hearts_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 8
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 0
+        y: 9
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 859c31560bce7aa60800000000000000
-      internalID: 7685371531485235544
+      spriteID: 979227be6bb2c004597d5ef543a1a568
+      internalID: -1673693362
       vertices: []
       indices: 
       edges: []
@@ -213,20 +216,20 @@ TextureImporter:
       name: Hearts_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 9
+        y: 9
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2e7fb4cab8a3c643a2f72773122a202
-      internalID: 881568282
+      spriteID: 93367cad7c6b6c945bca21d2ae9275e5
+      internalID: -765263831
       vertices: []
       indices: 
       edges: []
@@ -235,20 +238,42 @@ TextureImporter:
       name: Hearts_5
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 18
+        y: 9
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f5c3d891f3869004e9fa6fffc5b1f840
-      internalID: -1352840154
+      spriteID: 92876c921668e054f9317fd4c84406a9
+      internalID: -717062733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hearts_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 9
+        height: 9
+      alignment: 9
+      pivot: {x: 0.44444445, y: 0.5555556}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10d47ac6f3bef864abda253fcd7cf3fa
+      internalID: 146139948
       vertices: []
       indices: 
       edges: []
@@ -257,7 +282,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: e1caa5372c840144bae8ff2ad3f4143e
+    spriteID: 0ccde6bd86f91ff48acc6babe5bc3a2e
     internalID: 0
     vertices: []
     indices: 
@@ -267,14 +292,15 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":3.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":3.0},"gridSpriteSize":{"x":9.0,"y":9.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Hearts_0: 4432793351920879750
-      Hearts_1: 5642012044021194823
-      Hearts_2: 8124259339964715380
-      Hearts_3: 7685371531485235544
-      Hearts_4: 881568282
-      Hearts_5: -1352840154
+      Hearts_0: 455032095
+      Hearts_1: 2119734502
+      Hearts_2: 345232937
+      Hearts_3: -1673693362
+      Hearts_4: -765263831
+      Hearts_5: -717062733
+      Hearts_6: 146139948
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
