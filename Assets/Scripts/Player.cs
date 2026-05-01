@@ -1,10 +1,15 @@
 using System;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
  * TODO: 
- *  - Add health system
+ *  - Finish health system:
+ *      - Do we need a lock on health??
+ *      - Add death condition
+ *      - Add animation indicating i-frames
+ *      - Checkpoints
  *  - Add attacks
  *  - Decide what to do with first arm
  */
@@ -19,7 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxFall;
     [SerializeField] private float jumpSpeed;
     [SerializeField] private float speed;        // Current walk speed
-    [SerializeField] private UIController ui;   // TODO: change this later
+    [SerializeField] private GameObject UICanvas;
 
     private Physics physics;
     private InputAction moveAction;
@@ -28,17 +33,27 @@ public class Player : MonoBehaviour
     private BoxCollider2D curCollider;     // curChild's collider
     private Animator anim;
 
+    // Constants
     private float startSpeed = 2f;
     private float normalSpeed = 5f;
     private static float coyoteTime = 0.1f;
     private static float wallJumpAirTime = 0.225f;
+    private float iTime = 1f;   // i-frame time after being hit
 
+    // Health
+    private int health;
+    private int maxHealth;
+    private float  hitTime;
+
+    // Movement
     private float airTime;      // Time since leaving ground
     private float wallJumpTime; // Time since leaving wall
     private float dX, dY;       // Amt to move this loop
     private bool canMove;       // If false, disables player movement
     private bool doubleJumped;  // True iff has made their 2nd jump mid-air
     private bool wasInAir;      // Whether the previous frame was spent in mid-air
+
+    // Abilities
     private bool oneLeg;
     private bool twoLegs;
     private bool oneArm;
@@ -58,6 +73,9 @@ public class Player : MonoBehaviour
         curChild.SetActive(true);
         transform.GetChild(1).gameObject.SetActive(false);
 
+        health = 0;
+        maxHealth = 0;
+        hitTime = iTime + 1f;
         airTime = 0f;
         wallJumpTime = wallJumpAirTime + 1f;
         speed = startSpeed;
@@ -133,6 +151,8 @@ public class Player : MonoBehaviour
         SetDir(dX);
         SetAnimation(movement.x, grounded, jump, climb);
         wasInAir = !grounded && !climb;
+        hitTime += Time.deltaTime;
+        UpdateHearts();
     }
 
     private void SetDir(float dx)
@@ -182,6 +202,45 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void UpdateHearts()
+    {
+        for (int i = 0; i < maxHealth; i++)
+        {
+            UICanvas.transform.Find("Hearts").transform.GetChild(i).GetComponent<Animator>().SetBool("Active", i < health);
+        }
+    }
+
+    public void addHeart(int n)
+    {
+        Transform heart;
+        for (int i = 0; i < n; i++)
+        {
+            heart = UICanvas.transform.Find("Hearts").transform.GetChild(maxHealth+i);
+            if (heart == null)
+            {
+                maxHealth += i;
+                return;
+            }
+            heart.gameObject.SetActive(true);
+        }
+        maxHealth += n;
+        health = maxHealth;
+    }
+
+    public void TakeDamage(int n)
+    {
+        if (hitTime > iTime)
+        {
+            health = Math.Max(health-n, 0);
+        }
+        // TODO: death condition
+    }
+
+    public void Heal(int n)
+    {
+        health = Math.Min(health+n, maxHealth);
+    }
+
     public void DisableMvmt()
     {
         canMove = false;
@@ -195,12 +254,15 @@ public class Player : MonoBehaviour
     public void AddEyes()
     {
         anim.SetTrigger("Eyes");
+        addHeart(3);
+
     }
 
     public void AddLeg()
     {
         if (!oneLeg) {
             oneLeg = true;
+            EnableMvmt();   // Need to call this in case mvmt was disabled mid-crawl
             anim.SetTrigger("Leg1");
 
             // Change to full-sized sprite and collider, since player is now upright
@@ -215,6 +277,7 @@ public class Player : MonoBehaviour
             twoLegs = true;
             anim.SetTrigger("Leg2");
         }
+        addHeart(1);
     }
 
     public void AddArm()
@@ -227,5 +290,6 @@ public class Player : MonoBehaviour
             anim.SetTrigger("Arm2");
             twoArms = true;
         }
+        addHeart(1);
     }
 }
