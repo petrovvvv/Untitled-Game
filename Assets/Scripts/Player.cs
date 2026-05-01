@@ -7,31 +7,28 @@ using UnityEngine.InputSystem;
  * TODO: 
  *  - Finish health system:
  *      - Do we need a lock on health??
- *      - Add death condition
  *      - Add animation indicating i-frames
- *      - Checkpoints
  *  - Add attacks
  *  - Decide what to do with first arm
  */
 
 [RequireComponent(typeof(Physics))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(SpriteRenderer))]
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private float gravity;
     [SerializeField] private float maxFall;
     [SerializeField] private float jumpSpeed;
-    [SerializeField] private float speed;        // Current walk speed
+    [SerializeField] private float speed;
     [SerializeField] private GameObject UICanvas;
 
     private Physics physics;
+    private Animator anim;
     private InputAction moveAction;
     private InputAction jumpAction;
     private GameObject curChild;           // Current active player object
     private BoxCollider2D curCollider;     // curChild's collider
-    private Animator anim;
 
     // Constants
     private float startSpeed = 2f;
@@ -44,6 +41,8 @@ public class Player : MonoBehaviour
     private int health;
     private int maxHealth;
     private float  hitTime;
+    private Vector2 checkpoint; // Where to reset after taking damage
+    private Vector2 savepoint;  // Where to reset after dying/reloading from save
 
     // Movement
     private float airTime;      // Time since leaving ground
@@ -75,6 +74,8 @@ public class Player : MonoBehaviour
 
         health = 0;
         maxHealth = 0;
+        SetSavepoint(transform.position);
+
         hitTime = iTime + 1f;
         airTime = 0f;
         wallJumpTime = wallJumpAirTime + 1f;
@@ -83,8 +84,10 @@ public class Player : MonoBehaviour
         canMove = true;
         doubleJumped = false;
         wasInAir = true;
+
         oneLeg = false;
         twoLegs = false;
+        oneArm = false;
         twoArms = false;
     }
 
@@ -210,6 +213,17 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetCheckpoint(Vector2 v)
+    {
+        checkpoint = v;
+    }
+
+    public void SetSavepoint(Vector2 v)
+    {
+        checkpoint = v;
+        savepoint = v;
+    }
+
     public void addHeart(int n)
     {
         Transform heart;
@@ -227,13 +241,22 @@ public class Player : MonoBehaviour
         health = maxHealth;
     }
 
-    public void TakeDamage(int n)
+    public void TakeDamage(int n, bool returnToCheckpoint)
     {
         if (hitTime > iTime)
         {
             health = Math.Max(health-n, 0);
+            if (health == 0)
+            {
+                // TODO: possibly reset other things as well, good enough for now
+                transform.position = savepoint;
+                health = maxHealth;
+            }
+            else if (returnToCheckpoint)
+            {
+                transform.position = checkpoint;
+            }
         }
-        // TODO: death condition
     }
 
     public void Heal(int n)
@@ -244,11 +267,13 @@ public class Player : MonoBehaviour
     public void DisableMvmt()
     {
         canMove = false;
+        Debug.Log("mvmt disabled");
     }
 
     public void EnableMvmt()
     {
         canMove = true;
+         Debug.Log("mvmt enabled");
     }
 
     public void AddEyes()

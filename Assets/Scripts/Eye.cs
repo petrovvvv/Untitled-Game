@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider2D))]
+
 public class Eye : MonoBehaviour
 {
     // All objects to be made visible when eyes are acquired
