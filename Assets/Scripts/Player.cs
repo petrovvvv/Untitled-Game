@@ -14,6 +14,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Physics))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(DamageFlash))]
 
 public class Player : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 
     private Physics physics;
     private Animator anim;
+    private DamageFlash flash;
     private InputAction moveAction;
     private InputAction jumpAction;
     private GameObject curChild;           // Current active player object
@@ -35,7 +37,7 @@ public class Player : MonoBehaviour
     private float normalSpeed = 5f;
     private static float coyoteTime = 0.1f;
     private static float wallJumpAirTime = 0.225f;
-    private float iTime = 1f;   // i-frame time after being hit
+    private float iTime = 0.35f;   // i-frame time after being hit
 
     // Health
     private int health;
@@ -67,6 +69,7 @@ public class Player : MonoBehaviour
         curChild = transform.GetChild(0).gameObject;
         curCollider = curChild.GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        flash = GetComponent<DamageFlash>();
 
         // Make sure the correct player sprite is set up
         curChild.SetActive(true);
@@ -105,7 +108,6 @@ public class Player : MonoBehaviour
         if (wallJumpTime >= wallJumpAirTime) {
             dX = movement.x * speed;
         }
-        wallJumpTime += Time.deltaTime;
 
         // Vertical movement  
         bool climb = twoArms && !grounded && physics.OnWall(curCollider);
@@ -118,7 +120,6 @@ public class Player : MonoBehaviour
             doubleJumped = false;
         } else
         {
-            airTime += Time.deltaTime;
             if (dY > 0f && (physics.HitHead(curCollider) || jumpAction.WasReleasedThisFrame()))
             {
                 // Stop jump early
@@ -150,11 +151,21 @@ public class Player : MonoBehaviour
             jump = Jump(grounded, climb);
         }
 
+        // Timers and other checks
+        wasInAir = !grounded && !climb;
+        wallJumpTime += Time.deltaTime;
+        airTime += Time.deltaTime;
+        float oldHitTime = hitTime;
+        hitTime += Time.deltaTime;
+
+        // Update sprites
         physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
         SetDir(dX);
         SetAnimation(movement.x, grounded, jump, climb);
-        wasInAir = !grounded && !climb;
-        hitTime += Time.deltaTime;
+        if (oldHitTime < iTime && hitTime >= iTime)
+        {
+            flash.FlashOff();
+        }
         UpdateHearts();
     }
 
@@ -246,6 +257,8 @@ public class Player : MonoBehaviour
         if (hitTime > iTime)
         {
             health = Math.Max(health-n, 0);
+            hitTime = 0f;
+            flash.FlashOn();
             if (health == 0)
             {
                 // TODO: possibly reset other things as well, good enough for now
@@ -267,13 +280,11 @@ public class Player : MonoBehaviour
     public void DisableMvmt()
     {
         canMove = false;
-        Debug.Log("mvmt disabled");
     }
 
     public void EnableMvmt()
     {
         canMove = true;
-         Debug.Log("mvmt enabled");
     }
 
     public void AddEyes()
