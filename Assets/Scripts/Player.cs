@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
  * TODO: 
  *  - Finish health system:
  *      - Do we need a lock on health??
- *      - Add animation indicating i-frames
  *  - Add attacks
  *  - Decide what to do with first arm
  */
