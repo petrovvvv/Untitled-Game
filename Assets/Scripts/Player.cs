@@ -17,6 +17,8 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public bool debug;
+
     [SerializeField] private float gravity;
     [SerializeField] private float maxFall;
     [SerializeField] private float jumpSpeed;
@@ -29,7 +31,6 @@ public class Player : MonoBehaviour
     private InputAction moveAction;
     private InputAction jumpAction;
     private GameObject curChild;           // Current active player object
-    private BoxCollider2D curCollider;     // curChild's collider
 
     // Constants
     private float startSpeed = 2f;
@@ -66,7 +67,7 @@ public class Player : MonoBehaviour
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         curChild = transform.GetChild(0).gameObject;
-        curCollider = curChild.GetComponent<BoxCollider2D>();
+        physics.SetCollider(curChild.GetComponent<BoxCollider2D>());
         anim = GetComponent<Animator>();
         flash = GetComponent<DamageFlash>();
 
@@ -91,6 +92,15 @@ public class Player : MonoBehaviour
         twoLegs = false;
         oneArm = false;
         twoArms = false;
+
+        if (debug)
+        {
+            AddEyes();
+            AddLeg();
+            //AddLeg();
+            //AddArm();
+            //AddArm();
+        }
     }
 
     // Update is called once per frame
@@ -98,10 +108,10 @@ public class Player : MonoBehaviour
     {
         if (!canMove)
         {
-            return; // TODO: maybe still want gravity??
+            return;
         }
         Vector2 movement = moveAction.ReadValue<Vector2>();
-        bool grounded = physics.IsGrounded(curCollider);
+        bool grounded = physics.IsGrounded();
 
         // Horizontal movement
         if (wallJumpTime >= wallJumpAirTime) {
@@ -109,7 +119,7 @@ public class Player : MonoBehaviour
         }
 
         // Vertical movement  
-        bool climb = twoArms && !grounded && physics.OnWall(curCollider);
+        bool climb = twoArms && !grounded && physics.OnWall();
         bool jump = false;  // Whether a jump started this iteration
 
         if (grounded)
@@ -119,7 +129,7 @@ public class Player : MonoBehaviour
             doubleJumped = false;
         } else
         {
-            if (dY > 0f && (physics.HitHead(curCollider) || jumpAction.WasReleasedThisFrame()))
+            if (dY > 0f && (physics.HitHead() || jumpAction.WasReleasedThisFrame()))
             {
                 // Stop jump early
                 dY = 0f;
@@ -158,7 +168,7 @@ public class Player : MonoBehaviour
         hitTime += Time.deltaTime;
 
         // Update sprites
-        physics.Move(dX * Time.deltaTime, dY * Time.deltaTime, curCollider);
+        physics.Move(dX * Time.deltaTime, dY * Time.deltaTime);
         SetDir(dX);
         SetAnimation(movement.x, grounded, jump, climb);
         if (oldHitTime < iTime && hitTime >= iTime)
@@ -304,7 +314,7 @@ public class Player : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
             curChild = transform.GetChild(1).gameObject;
             curChild.SetActive(true);
-            curCollider = curChild.GetComponent<BoxCollider2D>();
+            physics.SetCollider(curChild.GetComponent<BoxCollider2D>());
 
             speed = normalSpeed;
         } else

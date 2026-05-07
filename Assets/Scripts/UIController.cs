@@ -19,8 +19,18 @@ public class UIController : MonoBehaviour
     {
         if (pauseAction.WasPressedThisFrame())
         {
-            Pause();
+            if (paused())
+            {
+                Unpause();
+            } else {
+                Pause();
+            }
         }
+    }
+
+    private bool paused()
+    {
+        return Time.timeScale == 0;
     }
 
     public void Pause()
