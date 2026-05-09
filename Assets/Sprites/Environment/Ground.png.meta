@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground_1
+      name: Ground_4
       rect:
         serializedVersion: 2
         x: 9
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground_2
+      name: Ground_1
       rect:
         serializedVersion: 2
         x: 18
@@ -216,28 +216,6 @@ TextureImporter:
       weights: []
     - serializedVersion: 2
       name: Ground_3
-      rect:
-        serializedVersion: 2
-        x: 27
-        y: 27
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2a6f1023b28d3bda0800000000000000
-      internalID: -5930158604282628446
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground_4
       rect:
         serializedVersion: 2
         x: 36
@@ -434,6 +412,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Ground_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 27
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ff09263bb9ec4a409861112fdf06358
+      internalID: -5930158604282628446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -446,16 +446,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":11.0,"y":11.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Ground_0: 6682738439518977790
-      Ground_1: -562605217060080129
+      Ground_1: -4970410492042351176
       Ground_10: 5331757720867617967
       Ground_11: 5743168839956448968
       Ground_12: 1940044384358670937
-      Ground_2: -4970410492042351176
-      Ground_3: -5930158604282628446
-      Ground_4: -4233739483619845583
+      Ground_2: -5930158604282628446
+      Ground_3: -4233739483619845583
+      Ground_4: -562605217060080129
       Ground_5: -6551456632857933372
       Ground_6: 4717279005209572468
       Ground_7: -232304020389510235
