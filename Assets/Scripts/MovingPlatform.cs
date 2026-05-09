@@ -67,7 +67,8 @@ public class MovingPlatform : MonoBehaviour
         }
 
         // Check horizontal in direction platform is moving
-        hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, new Vector2(Mathf.Sign(dir.x), 0f), 0.1f, ~selfLayer);
+        hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, new Vector2(Mathf.Sign(dir.x), 0f), 
+                                Math.Abs(dir.x) + 1f, ~selfLayer);
         if (hit)
         {
             return hit.collider.gameObject;

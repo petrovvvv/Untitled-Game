@@ -32,6 +32,7 @@ public class Physics : MonoBehaviour
             ColliderDistance2D dist = col.Distance(hit.collider);
             if (dist.isOverlapped) {
                 transform.Translate(dist.normal * (dist.distance - skinWidth*2));
+                Move(0, dist.distance);  // Move down a bit to counteract floating
             }
         }
     }
