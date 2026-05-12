@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 /*
- * TODO: 
- *  - Finish health system:
- *      - Do we need a lock on health??
+ * TODO:
  *  - Add attacks
- *  - Decide what to do with first arm
  */
+
+struct respawnPoint
+{
+    public Vector2 player;
+    public Vector3 camera;
+};
 
 [RequireComponent(typeof(Physics))]
 [RequireComponent(typeof(Animator))]
@@ -28,6 +31,7 @@ public class Player : MonoBehaviour
     private Physics physics;
     private Animator anim;
     private DamageFlash flash;
+    private CameraController cam;
     private InputAction moveAction;
     private InputAction jumpAction;
     private GameObject curChild;           // Current active player object
@@ -43,8 +47,8 @@ public class Player : MonoBehaviour
     private int health;
     private int maxHealth;
     private float  hitTime;
-    private Vector2 checkpoint; // Where to reset after taking damage
-    private Vector2 savepoint;  // Where to reset after dying/reloading from save
+    private respawnPoint checkpoint; // Where to reset after taking damage
+    private respawnPoint savepoint;  // Where to reset after dying/reloading from save
 
     // Movement
     private float airTime;      // Time since leaving ground
@@ -70,6 +74,7 @@ public class Player : MonoBehaviour
         physics.SetCollider(curChild.GetComponent<BoxCollider2D>());
         anim = GetComponent<Animator>();
         flash = GetComponent<DamageFlash>();
+        cam = GameObject.Find("Main Camera").gameObject.GetComponent<CameraController>();
 
         // Make sure the correct player sprite is set up
         curChild.SetActive(true);
@@ -235,13 +240,14 @@ public class Player : MonoBehaviour
 
     public void SetCheckpoint(Vector2 v)
     {
-        checkpoint = v;
+        checkpoint.player = v;
+        checkpoint.camera = cam.GetPosition();
     }
 
     public void SetSavepoint(Vector2 v)
     {
-        checkpoint = v;
-        savepoint = v;
+        SetCheckpoint(v);
+        savepoint = checkpoint;
     }
 
     public void addHeart(int n)
@@ -271,12 +277,14 @@ public class Player : MonoBehaviour
             if (health == 0)
             {
                 // TODO: possibly reset other things as well, good enough for now
-                transform.position = savepoint;
+                transform.position = savepoint.player;
+                cam.ResetCamera(savepoint.camera);
                 health = maxHealth;
             }
             else if (returnToCheckpoint)
             {
-                transform.position = checkpoint;
+                transform.position = checkpoint.player;
+                cam.SetPosition(checkpoint.camera);
             }
         }
     }
