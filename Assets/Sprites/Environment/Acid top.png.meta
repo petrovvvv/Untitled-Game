@@ -144,7 +144,7 @@ TextureImporter:
       name: Acid top_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 24
         y: 40
         width: 8
         height: 8
@@ -166,7 +166,7 @@ TextureImporter:
       name: Acid top_2
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 40
         width: 8
         height: 8
@@ -188,7 +188,7 @@ TextureImporter:
       name: Acid top_3
       rect:
         serializedVersion: 2
-        x: 32
+        x: 40
         y: 40
         width: 8
         height: 8
@@ -232,7 +232,7 @@ TextureImporter:
       name: Acid top_5
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 32
         width: 8
         height: 8
@@ -254,7 +254,7 @@ TextureImporter:
       name: Acid top_6
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 32
         width: 8
         height: 8
@@ -276,7 +276,7 @@ TextureImporter:
       name: Acid top_7
       rect:
         serializedVersion: 2
-        x: 40
+        x: 32
         y: 32
         width: 8
         height: 8
@@ -298,8 +298,8 @@ TextureImporter:
       name: Acid top_8
       rect:
         serializedVersion: 2
-        x: 0
-        y: 24
+        x: 40
+        y: 32
         width: 8
         height: 8
       alignment: 0
@@ -320,7 +320,7 @@ TextureImporter:
       name: Acid top_9
       rect:
         serializedVersion: 2
-        x: 8
+        x: 0
         y: 24
         width: 8
         height: 8
@@ -332,8 +332,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a50ef51882f9e464bbb8003342126073
-      internalID: 1114233745
+      spriteID: 0036e95d0a4c43344829579f3020e983
+      internalID: 1298949463
       vertices: []
       indices: 
       edges: []
@@ -342,7 +342,7 @@ TextureImporter:
       name: Acid top_10
       rect:
         serializedVersion: 2
-        x: 16
+        x: 8
         y: 24
         width: 8
         height: 8
@@ -354,8 +354,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6261758352e31724888da6f993ac4e74
-      internalID: -252013534
+      spriteID: 184d33ac3b7e2b44ba8e3b2bb1cbbc99
+      internalID: 1741279538
       vertices: []
       indices: 
       edges: []
@@ -364,6 +364,28 @@ TextureImporter:
       name: Acid top_11
       rect:
         serializedVersion: 2
+        x: 16
+        y: 24
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e0617cf71cccc34ba2054a67c2a2dc2
+      internalID: -112927641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_12
+      rect:
+        serializedVersion: 2
         x: 24
         y: 24
         width: 8
@@ -376,14 +398,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 215a15c4e687ac843a56ecc7fb65b624
-      internalID: 1122963988
+      spriteID: e3608a2996c063046bedce7905707a49
+      internalID: 173126497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_12
+      name: Acid top_13
       rect:
         serializedVersion: 2
         x: 32
@@ -398,14 +420,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9901d967bfc86994ebeb35a57f0bd5c5
-      internalID: 650129103
+      spriteID: f5fd9241d75af61479a3535db731c75f
+      internalID: -549864394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_13
+      name: Acid top_14
       rect:
         serializedVersion: 2
         x: 40
@@ -420,14 +442,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2400282fe61331149acc54ff9d5aa004
-      internalID: -311510288
+      spriteID: 8531338ca2ce2674b85b3cdaea04a1d9
+      internalID: 148545539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_14
+      name: Acid top_15
       rect:
         serializedVersion: 2
         x: 0
@@ -442,14 +464,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea475bd02612b8e46a3cc5c3c8431e0c
-      internalID: 1388177686
+      spriteID: b3ac1b355074ede4c8edeca353238a9f
+      internalID: 133673363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_15
+      name: Acid top_16
       rect:
         serializedVersion: 2
         x: 8
@@ -464,14 +486,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 70c36cb21437fd4488cace80a289a34d
-      internalID: 986008248
+      spriteID: 3a598916dccbd724693efa5ed50bd95a
+      internalID: 2002645593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_16
+      name: Acid top_17
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69e37374af6b71b4f95fe281c1b03f6b
+      internalID: 157757075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_18
       rect:
         serializedVersion: 2
         x: 24
@@ -486,14 +530,36 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3f18fa1f6d099a4da6a5aa270951960
-      internalID: -1734315585
+      spriteID: 62f71a8ea02e17f4bad3a47ddc5ae6c5
+      internalID: -29375618
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_17
+      name: Acid top_19
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 16
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e5af45dc1ac7274097002be465757a8
+      internalID: 1150670368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_20
       rect:
         serializedVersion: 2
         x: 0
@@ -508,14 +574,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe9f880f3d37b6049a17b8a5c8c1c4bc
-      internalID: -2016179639
+      spriteID: bcc1460539413e443bdbc0beafac4552
+      internalID: -1175430167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_18
+      name: Acid top_21
       rect:
         serializedVersion: 2
         x: 8
@@ -530,14 +596,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 860d5ddc08f631a47b515806881905bd
-      internalID: 1457707547
+      spriteID: 1e38f2d066dc847419f2241e0aeb648f
+      internalID: -2070276570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_19
+      name: Acid top_22
       rect:
         serializedVersion: 2
         x: 16
@@ -552,14 +618,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e364a6e3d99cd6f458e2355d863ba88b
-      internalID: 1316320346
+      spriteID: d6d2a54966472e64fb71e471c97c771d
+      internalID: -1906918032
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_20
+      name: Acid top_23
       rect:
         serializedVersion: 2
         x: 24
@@ -574,14 +640,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5a6daf578070da4f9dd9b6318d9d7b4
-      internalID: 736564279
+      spriteID: f57f748627b471543ac69d33e83e1f10
+      internalID: 1635469240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_21
+      name: Acid top_24
       rect:
         serializedVersion: 2
         x: 32
@@ -596,14 +662,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cde70db2e6a797489ce3004d2a8f575
-      internalID: -492168595
+      spriteID: ad367882c0e043c429b63797d19a05da
+      internalID: 1939652633
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_22
+      name: Acid top_25
       rect:
         serializedVersion: 2
         x: 40
@@ -618,14 +684,80 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b82d7cc6bd25a40438b539c3032fbad5
-      internalID: -30712661
+      spriteID: 52fe551ef069b374b961942968b9200b
+      internalID: 1653988783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Acid top_23
+      name: Acid top_26
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f1484c06c46e8d46be83090006b8da5
+      internalID: 1572645245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_27
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cb4431fba246df438be8cfd5f07cada
+      internalID: -1886300571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_28
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b426fd0954b8d554fbb50bdc75bb020d
+      internalID: -1029441842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Acid top_29
       rect:
         serializedVersion: 2
         x: 0
@@ -640,8 +772,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e8ab1e5de78b56046b80d255b4b519c4
-      internalID: 899749069
+      spriteID: 93040dc4453cbdb4a93681052cdc7c52
+      internalID: 141580665
       vertices: []
       indices: 
       edges: []
@@ -660,32 +792,38 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":6.0},"gridSpriteSize":{"x":8.0,"y":8.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":1,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       Acid top_0: -497215724
       Acid top_1: -1193009466
-      Acid top_10: -252013534
-      Acid top_11: 1122963988
-      Acid top_12: 650129103
-      Acid top_13: -311510288
-      Acid top_14: 1388177686
-      Acid top_15: 986008248
-      Acid top_16: -1734315585
-      Acid top_17: -2016179639
-      Acid top_18: 1457707547
-      Acid top_19: 1316320346
+      Acid top_10: 1741279538
+      Acid top_11: -112927641
+      Acid top_12: 173126497
+      Acid top_13: -549864394
+      Acid top_14: 148545539
+      Acid top_15: 133673363
+      Acid top_16: 2002645593
+      Acid top_17: 157757075
+      Acid top_18: -29375618
+      Acid top_19: 1150670368
       Acid top_2: -514540154
-      Acid top_20: 736564279
-      Acid top_21: -492168595
-      Acid top_22: -30712661
-      Acid top_23: 899749069
+      Acid top_20: -1175430167
+      Acid top_21: -2070276570
+      Acid top_22: -1906918032
+      Acid top_23: 1635469240
+      Acid top_24: 1939652633
+      Acid top_25: 1653988783
+      Acid top_26: 1572645245
+      Acid top_27: -1886300571
+      Acid top_28: -1029441842
+      Acid top_29: 141580665
       Acid top_3: -1468745951
       Acid top_4: -830027880
       Acid top_5: 1112815657
       Acid top_6: -1779516347
       Acid top_7: 679661842
       Acid top_8: -1392038126
-      Acid top_9: 1114233745
+      Acid top_9: 1298949463
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -13,17 +13,10 @@ MonoBehaviour:
   m_Name: WaterTop2
   m_EditorClassIdentifier: Unity.2D.Tilemap.Extras::UnityEngine.Tilemaps.AnimatedTile
   m_AnimatedSprites:
-  - {fileID: 679661842, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 986008248, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: -1734315585, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  - {fileID: 899749069, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-  m_MinSpeed: 10
-  m_MaxSpeed: 10
+  - {fileID: 3344493445852862854, guid: 280641284abea9c4ebfd2ae3295389eb, type: 3}
+  - {fileID: -879822599, guid: 280641284abea9c4ebfd2ae3295389eb, type: 3}
+  m_MinSpeed: 2
+  m_MaxSpeed: 2
   m_AnimationStartTime: 0
   m_AnimationStartFrame: 0
   m_TileColliderType: 0

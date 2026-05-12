@@ -13,13 +13,11 @@ public class Physics : MonoBehaviour
 {   
     private float skinWidth = 0.02f;
     private LayerMask selfLayer;
-    private LayerMask groundLayer;
     private BoxCollider2D col;
 
     void Start()
     {
         selfLayer = 1 << gameObject.layer;
-        groundLayer = 1 << LayerMask.NameToLayer("Ground");
     }
 
     void FixedUpdate()
@@ -32,12 +30,12 @@ public class Physics : MonoBehaviour
             ColliderDistance2D dist = col.Distance(hit.collider);
             if (dist.isOverlapped) {
                 transform.Translate(dist.normal * (dist.distance - skinWidth*2));
-                Move(0, dist.distance);  // Move down a bit to counteract floating
+                Move(0, dist.distance*5f);  // Move down a bit to counteract floating
             }
         }
     }
 
-    public void SetCollider(BoxCollider2D c)
+  public void SetCollider(BoxCollider2D c)
     {
         col = c;
     }
@@ -46,7 +44,14 @@ public class Physics : MonoBehaviour
     // Otherwise, removes it from previous heirarchy
     public bool IsGrounded()
     {
-        RaycastHit2D groundHit = Cast(Vector2.down, groundLayer, skinWidth);
+        RaycastHit2D groundHit = Cast(Vector2.down, ~selfLayer, skinWidth);
+        if (groundHit)
+        {
+            transform.SetParent(groundHit.transform);
+        } else
+        {
+            transform.SetParent(null);
+        }
         return groundHit;
     }
 
