@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Eye : MonoBehaviour
 {
-    // All objects to be made visible when eyes are acquired
+  [SerializeField] private Animator blindnessAnimator;
+  
+  // All objects to be made visible when eyes are acquired
   void OnTriggerEnter2D(Collider2D c)
   {
-    c.gameObject.GetComponent<PlayerCollision>().AddEyes();
+    blindnessAnimator.SetTrigger("Lift");
+    c.gameObject.GetComponentInParent<Player>().AddEyes();
     gameObject.SetActive(false);
   }
 }

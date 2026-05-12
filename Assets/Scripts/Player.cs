@@ -289,13 +289,11 @@ public class Player : MonoBehaviour
     public void DisableMvmt()
     {
         canMove = false;
-        Debug.Log("player disabled " + Time.frameCount);
     }
 
     public void EnableMvmt()
     {
         canMove = true;
-        Debug.Log("player enabled " + Time.frameCount);
     }
 
     public void AddEyes()
