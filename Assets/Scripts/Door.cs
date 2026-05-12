@@ -28,4 +28,23 @@ public class Door : MonoBehaviour
             cam.SetPosition(leftBot.transform.position);
         }
     }
+
+    // Change again on exit to prevent camera getting "stuck" if player goes back without
+    // fully crossing door
+    void OnTriggerExit2D(Collider2D c)
+    {
+        // If vertical door, use y values, otherwise use x
+        float player = vert ? c.transform.position.y : c.transform.position.x;
+        float door  = vert ? transform.position.y : transform.position.x;
+        if (player > door)
+        {
+            // Left -> right or bottom -> top
+            cam.SetPosition(rightTop.transform.position);
+
+        } else
+        {
+            // Right -> left or top -> bottom
+            cam.SetPosition(leftBot.transform.position);
+        }
+    }
 }

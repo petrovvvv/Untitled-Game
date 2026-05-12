@@ -165,7 +165,6 @@ GameObject:
   - component: {fileID: 81244996}
   - component: {fileID: 81244997}
   - component: {fileID: 81245002}
-  - component: {fileID: 81245003}
   m_Layer: 7
   m_Name: Start
   m_TagString: Untagged
@@ -261,18 +260,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &81245003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81244991}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89491bd2014d3f149bba03498c7e4edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &120731148
 GameObject:
   m_ObjectHideFlags: 0
@@ -4231,8 +4218,8 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1.0004576
-    height: 0.9996951
+    width: 0.99929816
+    height: 0.99953204
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 67
@@ -5458,7 +5445,7 @@ Tilemap:
       - {fileID: 141580665, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
       - {fileID: 141580665, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
       - {fileID: 141580665, guid: 22fd9399432b28c4982879ac7d40d095, type: 3}
-      m_AnimationSpeed: 9.000001
+      m_AnimationSpeed: 9
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -4, y: -29, z: 0}
@@ -8674,7 +8661,6 @@ GameObject:
   - component: {fileID: 1141631863}
   - component: {fileID: 1141631867}
   - component: {fileID: 1141631866}
-  - component: {fileID: 1141631868}
   m_Layer: 7
   m_Name: Full
   m_TagString: Untagged
@@ -8770,18 +8756,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.875, y: 1.75}
   m_EdgeRadius: 0
---- !u!114 &1141631868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1141631862}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89491bd2014d3f149bba03498c7e4edd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1170958963
 GameObject:
   m_ObjectHideFlags: 0
