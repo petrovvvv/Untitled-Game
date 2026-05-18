@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -41,14 +42,16 @@ public class Player : MonoBehaviour
     private float normalSpeed = 5f;
     private static float coyoteTime = 0.1f;
     private static float wallJumpAirTime = 0.225f;
-    private float iTime = 0.35f;   // i-frame time after being hit
+    private float iTime = 0.5f;   // i-frame time after being hit
 
-    // Health
+    // Health and damage
     private int health;
     private int maxHealth;
+    private int damage;
     private float  hitTime;
     private respawnPoint checkpoint; // Where to reset after taking damage
     private respawnPoint savepoint;  // Where to reset after dying/reloading from save
+    private LayerMask enemyMask;
 
     // Movement
     private float airTime;      // Time since leaving ground
@@ -83,6 +86,8 @@ public class Player : MonoBehaviour
         health = 0;
         maxHealth = 0;
         SetSavepoint(transform.position);
+        enemyMask = 1 << LayerMask.NameToLayer("Enemy");
+        damage = 1;
 
         hitTime = iTime + 1f;
         airTime = 0f;
@@ -165,6 +170,9 @@ public class Player : MonoBehaviour
             jump = Jump(grounded, climb);
         }
 
+        // Deal damage to enemies
+        HitBelow();
+
         // Timers and other checks
         wasInAir = !grounded && !climb;
         wallJumpTime += Time.deltaTime;
@@ -235,6 +243,16 @@ public class Player : MonoBehaviour
         for (int i = 0; i < maxHealth; i++)
         {
             UICanvas.transform.Find("Hearts").transform.GetChild(i).GetComponent<Animator>().SetBool("Active", i < health);
+        }
+    }
+
+    // Deals damage to enemy if player hits them from above
+    private void HitBelow()
+    {
+        RaycastHit2D hit = physics.Cast(Vector2.down, enemyMask, 0f);
+        if (hit)
+        {
+            hit.collider.GetComponentInParent<Enemy>().TakeDamage(damage);
         }
     }
 

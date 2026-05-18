@@ -12,18 +12,20 @@ using UnityEngine;
 public class Physics : MonoBehaviour
 {   
     private float skinWidth = 0.02f;
-    private LayerMask selfLayer;
+    private LayerMask selfMask;
+    private LayerMask groundMask;
     private BoxCollider2D col;
 
     void Start()
     {
-        selfLayer = 1 << gameObject.layer;
+        selfMask = 1 << gameObject.layer;
+        groundMask = 1 << LayerMask.NameToLayer("Ground");
     }
 
     void FixedUpdate()
     {
         // Check for accidental collision, then move out
-        RaycastHit2D hit = Cast(new Vector2(1, 1), ~selfLayer, 0f);
+        RaycastHit2D hit = Cast(new Vector2(1, 1), ~selfMask, 0f);
         if (hit)
         {
             // Move a little outside the object
@@ -35,7 +37,7 @@ public class Physics : MonoBehaviour
         }
     }
 
-  public void SetCollider(BoxCollider2D c)
+    public void SetCollider(BoxCollider2D c)
     {
         col = c;
     }
@@ -44,7 +46,7 @@ public class Physics : MonoBehaviour
     // Otherwise, removes it from previous heirarchy
     public bool IsGrounded()
     {
-        RaycastHit2D groundHit = Cast(Vector2.down, ~selfLayer, skinWidth);
+        RaycastHit2D groundHit = Cast(Vector2.down, groundMask, 0f);
         if (groundHit)
         {
             transform.SetParent(groundHit.transform);
@@ -57,7 +59,7 @@ public class Physics : MonoBehaviour
 
     public bool HitHead()
     {
-        RaycastHit2D topHit = Cast(Vector2.up, ~selfLayer, skinWidth);
+        RaycastHit2D topHit = Cast(Vector2.up, ~selfMask, 0f);
         return topHit;
     }
 
@@ -65,7 +67,7 @@ public class Physics : MonoBehaviour
     {
         // Cast ray in direction object is facing
         Vector2 dir = new Vector2(transform.localScale.x, 0f);
-        RaycastHit2D sideHit = Cast(dir, ~selfLayer, skinWidth);
+        RaycastHit2D sideHit = Cast(dir, ~selfMask, 0f);
         return sideHit;
     }
 
@@ -78,9 +80,10 @@ public class Physics : MonoBehaviour
         transform.Translate(new Vector2(x, y));
     }
 
-    private float CastLen(Vector2 dir, float len) {
+    // Casts a ray and returns the max length that the object can move along that ray
+    public float CastLen(Vector2 dir, float len) {
         float dirSign = Math.Sign(len);
-        RaycastHit2D hit = Cast(dir * dirSign, ~selfLayer, Math.Abs(len));
+        RaycastHit2D hit = Cast(dir * dirSign, ~selfMask, Math.Abs(len));
         if (!hit)
         {
             return len;
@@ -88,14 +91,15 @@ public class Physics : MonoBehaviour
         return (hit.distance - skinWidth) * dirSign;
     }
 
-    private RaycastHit2D Cast(Vector2 dir, LayerMask mask, float len)
+    // Casts a ray and returns its RayCastHit2D, or NULL if none
+    public RaycastHit2D Cast(Vector2 dir, LayerMask mask, float len)
     {
         Bounds bounds = col.bounds;
         List<RaycastHit2D> hits = new List<RaycastHit2D>();
         ContactFilter2D filter = new ContactFilter2D();
         bounds.Expand(skinWidth * -2f);
         filter.SetLayerMask(mask);
-        Physics2D.BoxCast(bounds.center, bounds.size,  0f, dir, filter, hits, len + skinWidth);
+        Physics2D.BoxCast(bounds.center, bounds.size,  0f, dir, filter, hits, len + skinWidth*2f);
         foreach (RaycastHit2D hit in hits)
         {
             if (hit.collider.isTrigger)
