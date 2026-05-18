@@ -4,11 +4,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/*
- * TODO:
- *  - Add attacks
- */
-
 struct respawnPoint
 {
     public Vector2 player;
