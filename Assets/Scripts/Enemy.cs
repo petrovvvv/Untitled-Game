@@ -34,18 +34,11 @@ public class Enemy : MovingObject
         Debug.Log("Taking " + n + " damage, health = " + curHealth);
         if (curHealth <= 0)
         {
-            // TODO
+            // TODO: animation
             gameObject.SetActive(false);
         }
     }
 
-    /*void OnCollisionEnter2D(Collision2D collision)
-    {
-        ColliderDistance2D dist = box.Distance(collision.collider);
-        Debug.Log(dist.normal);
-    }*/
-
-    // Deals damage to player if they are touching the sides
     private void CheckSides()
     {
         Bounds bounds = box.bounds;
@@ -65,15 +58,4 @@ public class Enemy : MovingObject
 
         hit.collider.GetComponent<Player>().TakeDamage(damage, false);
     }
-
-    /*private void CheckTop()
-    {
-        Bounds b = box.bounds;
-        RaycastHit2D hit = Physics2D.Raycast(b.center, Vector2.up, b.extents.y + skinWidth,
-                                                playerMask);
-        if (hit)
-        {
-            TakeDamage(transform.Find("Player").GetComponent<Player>().GetDamage());
-        }
-    }*/
 }

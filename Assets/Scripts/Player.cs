@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
         }
 
         // Deal damage to enemies
-        //HitBelow();
+        HitBelow();
 
         // Timers and other checks
         wasInAir = !grounded && !climb;
@@ -241,7 +241,7 @@ public class Player : MonoBehaviour
     // Deals damage to enemy if player hits them from above
     private void HitBelow()
     {
-        RaycastHit2D hit = physics.Cast(Vector2.down, enemyMask, 0f);
+        RaycastHit2D hit = physics.RayCast(Vector2.down, enemyMask, curBox.bounds.extents.y);
         if (hit)
         {
             hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);

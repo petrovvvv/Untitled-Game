@@ -111,5 +111,10 @@ public class Physics : MonoBehaviour
         }
         return default(RaycastHit2D);
     }
+
+    public RaycastHit2D RayCast(Vector2 dir, LayerMask mask, float len)
+    {
+        return Physics2D.Raycast(col.bounds.center, dir, len + skinWidth, mask);
+    }
 }
 
