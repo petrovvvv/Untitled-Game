@@ -1,35 +1,30 @@
 using System;
 using UnityEngine;
-using UnityEngine.Rendering;
 
-[RequireComponent(typeof(BoxCollider2D))]
-
-public class MovingPlatform : MonoBehaviour
+public class MovingObject : MonoBehaviour
 {
     [SerializeField] private Vector3[] waypoints;
     [SerializeField] private float speed;
     private int i;
-    private BoxCollider2D col;
-    private LayerMask selfLayer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    protected void InitMovingObject()
     {
         i = 0;
-        col = GetComponent<BoxCollider2D>();
-        selfLayer = 1 << gameObject.layer;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        InitMovingObject();
+    }
+
     void Update()
     {
         Vector2 mvmt = CalculateMvmt();
         transform.Translate(mvmt);
     }
-
-    private Vector2 CalculateMvmt()
+    protected Vector2 CalculateMvmt()
     {
-        if (transform.position == waypoints[i])
+        if (Vector3.Distance(transform.position,waypoints[i]) <= 0.05)
         {
             i = (i + 1) % waypoints.Length;
         }

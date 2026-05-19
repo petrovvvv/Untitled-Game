@@ -5,7 +5,7 @@ public class Arm : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D c)
     {
-        c.gameObject.GetComponentInParent<Player>().AddArm();
+        c.gameObject.GetComponent<Player>().AddArm();
         gameObject.SetActive(false);
     }
 }

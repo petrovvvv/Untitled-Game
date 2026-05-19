@@ -1,7 +1,7 @@
 using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 
-public class Enemy : MonoBehaviour
+public class Enemy : MovingObject
 {
     [SerializeField] private int health;
     [SerializeField] private int damage;
@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        InitMovingObject();
         box = GetComponent<BoxCollider2D>();
         playerMask = 1 << LayerMask.NameToLayer("Player");
         curHealth = health;
@@ -20,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        Vector2 mvmt = CalculateMvmt();
+        Debug.Log("Moving " + mvmt);
+        transform.Translate(mvmt);
+
         CheckSides();
     }
 
@@ -33,7 +38,13 @@ public class Enemy : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-  
+
+    /*void OnCollisionEnter2D(Collision2D collision)
+    {
+        ColliderDistance2D dist = box.Distance(collision.collider);
+        Debug.Log(dist.normal);
+    }*/
+
     // Deals damage to player if they are touching the sides
     private void CheckSides()
     {
@@ -52,6 +63,17 @@ public class Enemy : MonoBehaviour
             }
         }
 
-        hit.collider.GetComponentInParent<Player>().TakeDamage(damage, false);
+        hit.collider.GetComponent<Player>().TakeDamage(damage, false);
     }
+
+    /*private void CheckTop()
+    {
+        Bounds b = box.bounds;
+        RaycastHit2D hit = Physics2D.Raycast(b.center, Vector2.up, b.extents.y + skinWidth,
+                                                playerMask);
+        if (hit)
+        {
+            TakeDamage(transform.Find("Player").GetComponent<Player>().GetDamage());
+        }
+    }*/
 }

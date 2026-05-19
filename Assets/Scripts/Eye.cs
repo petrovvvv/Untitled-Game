@@ -10,7 +10,7 @@ public class Eye : MonoBehaviour
   void OnTriggerEnter2D(Collider2D c)
   {
     blindnessAnimator.SetTrigger("Lift");
-    c.gameObject.GetComponentInParent<Player>().AddEyes();
+    c.gameObject.GetComponent<Player>().AddEyes();
     gameObject.SetActive(false);
   }
 }

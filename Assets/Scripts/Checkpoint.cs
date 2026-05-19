@@ -5,6 +5,6 @@ public class Checkpoint : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D c)
     {
-        c.gameObject.GetComponentInParent<Player>().SetCheckpoint(transform.position);
+        c.gameObject.GetComponent<Player>().SetCheckpoint(transform.position);
     }
 }

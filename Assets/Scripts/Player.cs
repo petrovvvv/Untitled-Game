@@ -1,6 +1,4 @@
 using System;
-using System.Linq.Expressions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,7 +28,7 @@ public class Player : MonoBehaviour
     private CameraController cam;
     private InputAction moveAction;
     private InputAction jumpAction;
-    private GameObject curChild;           // Current active player object
+    private BoxCollider2D curBox;
 
     // Constants
     private float startSpeed = 2f;
@@ -68,15 +66,14 @@ public class Player : MonoBehaviour
         physics = GetComponent<Physics>();
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
-        curChild = transform.GetChild(0).gameObject;
-        physics.SetCollider(curChild.GetComponent<BoxCollider2D>());
+        BoxCollider2D[] boxes = GetComponents<BoxCollider2D>();
+        curBox = boxes[0];
+        curBox.enabled = true;
+        boxes[1].enabled = false;
+        physics.SetCollider(curBox);
         anim = GetComponent<Animator>();
         flash = GetComponent<DamageFlash>();
         cam = GameObject.Find("Main Camera").gameObject.GetComponent<CameraController>();
-
-        // Make sure the correct player sprite is set up
-        curChild.SetActive(true);
-        transform.GetChild(1).gameObject.SetActive(false);
 
         health = 0;
         maxHealth = 0;
@@ -166,7 +163,7 @@ public class Player : MonoBehaviour
         }
 
         // Deal damage to enemies
-        HitBelow();
+        //HitBelow();
 
         // Timers and other checks
         wasInAir = !grounded && !climb;
@@ -247,10 +244,9 @@ public class Player : MonoBehaviour
         RaycastHit2D hit = physics.Cast(Vector2.down, enemyMask, 0f);
         if (hit)
         {
-            hit.collider.GetComponentInParent<Enemy>().TakeDamage(damage);
+            hit.collider.gameObject.GetComponent<Enemy>().TakeDamage(damage);
         }
     }
-
     public void SetCheckpoint(Vector2 v)
     {
         checkpoint.player = v;
@@ -332,10 +328,10 @@ public class Player : MonoBehaviour
             anim.SetTrigger("Leg1");
 
             // Change to full-sized sprite and collider, since player is now upright
-            transform.GetChild(0).gameObject.SetActive(false);
-            curChild = transform.GetChild(1).gameObject;
-            curChild.SetActive(true);
-            physics.SetCollider(curChild.GetComponent<BoxCollider2D>());
+            curBox.enabled = false;
+            curBox = GetComponents<BoxCollider2D>()[1];
+            curBox.enabled = true;
+            physics.SetCollider(curBox);
 
             speed = normalSpeed;
         } else

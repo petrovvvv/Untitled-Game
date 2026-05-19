@@ -5,7 +5,7 @@ public class Leg : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D c)
     {
-        c.gameObject.GetComponentInParent<Player>().AddLeg();
+        c.gameObject.GetComponent<Player>().AddLeg();
         gameObject.SetActive(false);
     }
 }

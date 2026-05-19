@@ -174,5 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7854b6eaace068e45a6ed1d7d9500d0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  waypoints: []
+  speed: 1
   health: 1
   damage: 1

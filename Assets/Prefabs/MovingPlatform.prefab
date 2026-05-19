@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3065311041489124087}
   - component: {fileID: 4634113751520905021}
   - component: {fileID: 8302633315731124368}
-  - component: {fileID: 5865824634024131731}
+  - component: {fileID: 8082537956752540810}
   m_Layer: 6
   m_Name: MovingPlatform
   m_TagString: Untagged
@@ -139,7 +139,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 1}
   m_EdgeRadius: 0
---- !u!114 &5865824634024131731
+--- !u!114 &8082537956752540810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,10 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1207881215139511774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4be3111777e824299e2d1e7569cfa6, type: 3}
+  m_Script: {fileID: 11500000, guid: fedf33647ab3b9d4d8b38b673f94d38f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MovingPlatform
-  waypoints:
-  - {x: 10.25, y: -25, z: 0}
-  - {x: 10.25, y: -15.5, z: 0}
-  speed: 3.4545455
+  m_EditorClassIdentifier: Assembly-CSharp::MovingObject
+  waypoints: []
+  speed: 0
