@@ -24,14 +24,15 @@ public class MovingObject : MonoBehaviour
     }
     protected Vector2 CalculateMvmt()
     {
-        if (Vector3.Distance(transform.position,waypoints[i]) <= 0.05)
+        float dist = Vector3.Distance(waypoints[i], transform.localPosition);
+        if (dist <= 0.05)
         {
             i = (i + 1) % waypoints.Length;
         }
 
-        float dX = waypoints[i].x - transform.position.x;
-        float dY = waypoints[i].y - transform.position.y;
-        float frameDist = Math.Min(speed * Time.deltaTime, Vector3.Distance(waypoints[i], transform.position));
+        float dX = waypoints[i].x - transform.localPosition.x;
+        float dY = waypoints[i].y - transform.localPosition.y;
+        float frameDist = Math.Min(speed * Time.deltaTime, dist);
         if (dX == 0) {
             // Vertical movement only
             return new Vector2(0f, frameDist * Math.Sign(dY));

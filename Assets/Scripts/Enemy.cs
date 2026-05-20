@@ -22,7 +22,6 @@ public class Enemy : MovingObject
     void Update()
     {
         Vector2 mvmt = CalculateMvmt();
-        Debug.Log("Moving " + mvmt);
         transform.Translate(mvmt);
 
         CheckSides();
@@ -31,7 +30,6 @@ public class Enemy : MovingObject
     public void TakeDamage(int n)
     {
         curHealth -= n;
-        Debug.Log("Taking " + n + " damage, health = " + curHealth);
         if (curHealth <= 0)
         {
             // TODO: animation
